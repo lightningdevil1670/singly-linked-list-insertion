@@ -1,0 +1,117 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+	int data;
+ 	struct node * next;
+};
+struct node*head, *newnode, *temp;
+
+void beg()
+{
+	newnode = (struct node*) malloc(sizeof(struct node));
+	cout<<"\n enter the data u want to enter : ";
+	cin>>newnode->data;
+	newnode->next = head;
+	head= newnode;
+	
+}
+void end()
+{
+	newnode = (struct node *)  malloc(sizeof(struct node));
+	cout<<"\n enter the data u want to enter : ";
+	cin>>newnode->data;
+	newnode->next=0;
+	temp = head;
+	while(temp->next != 0 )
+	{
+		temp = temp->next;
+	}
+	temp->next=newnode;
+	
+}
+void position(int count)
+{
+	int pos,i=1;
+	newnode = (struct node *) malloc(sizeof(struct node));
+	cout<<"\n enter the data u want to enter :";
+	cin>>newnode->data;
+	cout<<"\n enter the position after which u want ur position  to apear :";
+	cin>>pos;
+	if(pos>count || pos<0)
+	{
+		cout<<"\n invalide number";
+	}
+	else
+	{	
+		temp=head;
+		while(i<pos) // pos to eneter is 3
+		{
+			temp= temp->next;
+			i++;
+		}
+		newnode->next= temp->next;
+		temp->next=newnode;
+	}
+	
+}
+
+
+int main()
+{
+	head=0;
+	int choice=1, add;
+	int count=0;
+	while (choice)
+	{
+		newnode = (struct node *) malloc(sizeof(struct node));
+		cout<<"\n enter data pls i am very tired, lets get this over fast :";
+		cin>>newnode->data;
+		newnode->next=0;
+		if(head==0)
+		{
+			head=temp=newnode;
+		}
+		else
+		{	
+			temp->next=newnode;
+			temp=newnode;
+		}	
+		cout<<"Do u want to add 1 more node? ( 0 for no, 1 for yes) :";
+		cin>>choice;
+	}
+		temp=head;
+		while(temp!=0)
+		{
+			temp=temp->next;
+			count++;	
+		}
+	
+	cout<<"\nenter 1. to add in the begining :";
+	cout<<"\nenter 2. to add in the end :";
+	cout<<"\nenter 3. to add in between position :";
+	cin>>add;
+	switch(add)
+	{
+		case 1:
+			beg();
+			break;
+		case 2:
+			end();
+			break;
+		case 3:
+			position(count);
+			break;
+	}
+		temp=head;
+	while(temp!=0)
+		{
+			cout<<temp->data<<endl;
+			temp=temp->next;
+			count++;	
+		}
+	return 0;
+
+}
+	
